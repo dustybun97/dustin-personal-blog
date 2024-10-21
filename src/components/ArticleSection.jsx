@@ -2,8 +2,11 @@ import * as React from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
+import { BlockCard } from "./BlockCard";
+import { blogPosts } from "../data/blogPosts";
 
-function LatestArticles() {
+
+function ArticleSection() {
   const categories = ["Highlight", "Cat", "Inspiration", "General"];
   const [activeCategory, setActiveCategory] = React.useState("Highlight");
 
@@ -36,11 +39,26 @@ function LatestArticles() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         </div>
       </div>
-      {/* Placeholder for article list */}
       <div className="bg-white p-6 rounded-lg shadow-sm">
         <p className="text-gray-600">Article list would go here...</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {blogPosts.map((post) => (
+          <div key={post.id} className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+            <div className="p-4">
+              <span className="text-sm font-medium text-blue-600">{post.category}</span>
+              <h2 className="mt-2 text-xl font-semibold text-gray-900">{post.title}</h2>
+              <p className="mt-2 text-sm text-gray-600">{post.description}</p>
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-sm text-gray-500">{post.author} • {post.date}</span>
+                <span className="text-sm text-gray-500">{post.likes} likes</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
       </div>
     </div>
   );
 }
-export default LatestArticles;
+export default ArticleSection;

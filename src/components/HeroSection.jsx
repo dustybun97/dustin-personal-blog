@@ -21,7 +21,7 @@ export function HeroSection() {
           />
           <div className="lg:w-1/3 lg:pl-8 text-left">
             <h2 className="text-xl font-semibold mb-2 ">-Author</h2>
-            <h3 className="text-2xl font-bold mb-4">Thompson P.</h3>
+            <h3 className="text-2xl font-bold mb-4">Dusit R.</h3>
             <p className="text-gray-500 mb-4">
               I am a pet enthusiast and freelance writer who specializes in animal
               behavior and care. With a deep love for cats, I enjoy sharing

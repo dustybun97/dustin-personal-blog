@@ -1,4 +1,4 @@
-export const blogPosts = [
+ export const blogPosts = [
   {
     id: 1,
     image:

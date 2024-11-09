@@ -2,12 +2,11 @@ import * as React from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
-import { BlockCard } from "./BlockCard";
 import { blogPosts } from "../data/blogPosts";
 
 function ArticleSection() {
   const categories = ["Highlight", "Cat", "Inspiration", "General"];
-  const [activeCategory, setActiveCategory] = React.useState("Highlight");
+  const [activeCategory, setActiveCategory] = React.useState();
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 bg-gray-100">

@@ -36,12 +36,13 @@ function ArticleSection() {
             <Button
               key={category}
               variant={activeCategory === category ? "secondary" : "ghost"}
-              className={`rounded-full ${
+              className={`rounded-full transition-colors duration-300 ease-in-out ${
                 activeCategory === category
                   ? "bg-gray-200"
                   : "hover:bg-gray-200"
               }`}
               onClick={() => setActiveCategory(category)}
+              disabled={activeCategory === category} // Disable the button if it's the active category
             >
               {category}
             </Button>
@@ -53,7 +54,7 @@ function ArticleSection() {
           <Input
             type="text"
             placeholder="Search"
-            className="pl-10 pr-4 py-2 w-full lg:w-[300px] bg-white border-gray-200"
+            className="pl-10 pr-4 py-2 w-full lg:w-[300px] bg-white border-gray-200 text-left placeholder:text-right"
           />
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         </div>

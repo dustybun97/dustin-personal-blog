@@ -57,6 +57,7 @@ export function Articles() {
   const categories = ["Highlight", "Cat", "Inspiration", "General"];
   const [category, setCategory] = useState("Highlight");
   const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -80,6 +81,8 @@ export function Articles() {
             <Input
               type="text"
               placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="py-3 rounded-sm placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-muted-foreground"
             />
           </div>
@@ -118,23 +121,33 @@ export function Articles() {
         </div>
       </div>
       <article className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-0">
-        {posts.map((blog, index) => {
-          return (
-            <BlockCard
-              key={index}
-              image={blog.image}
-              category={blog.category}
-              title={blog.title}
-              description={blog.description}
-              author={blog.author}
-              date={new Date(blog.date).toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            />
-          );
-        })}
+        {posts
+          .filter((post) => {
+            const matchesCategory =
+              category === "Highlight" || post.category === category;
+            const matchesSearch =
+              post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              post.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+            return matchesCategory && matchesSearch;
+          })
+          .map((blog, index) => {
+            return (
+              <BlockCard
+                key={index}
+                image={blog.image}
+                category={blog.category}
+                title={blog.title}
+                description={blog.description}
+                author={blog.author}
+                date={new Date(blog.date).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              />
+            );
+          })}
       </article>
     </div>
   );
